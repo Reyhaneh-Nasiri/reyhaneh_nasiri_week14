@@ -2,6 +2,21 @@ import { useState } from "react";
 import styles from "./AddContactPage.module.css";
 const AddContactPage = () => {
   const [isFocus, setIsFocus] = useState(false);
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    job: "",
+  });
+
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const saveHandler = () => {
+    console.log(formValues);
+  };
 
   const focusHandler = () => {
     setIsFocus(true);
@@ -16,34 +31,62 @@ const AddContactPage = () => {
             <label htmlFor="name" className={styles.form__label}>
               Name
             </label>
-            <input id="name" type="text" name="name" onFocus={focusHandler} />
+            <input
+              id="name"
+              type="text"
+              name="name"
+              onFocus={focusHandler}
+              value={formValues.name}
+              onChange={changeHandler}
+            />
             <i className="fa-solid fa-user"></i>
           </div>
           <div className={styles.form__input}>
             <label htmlFor="email" className={styles.form__label}>
               Email
             </label>
-            <input id="email" type="text" name="email" onFocus={focusHandler} />
+            <input
+              id="email"
+              type="text"
+              name="email"
+              onFocus={focusHandler}
+              value={formValues.email}
+              onChange={changeHandler}
+            />
             <i className="fa-solid fa-envelope"></i>
           </div>
           <div className={styles.form__input}>
             <label htmlFor="phone" className={styles.form__label}>
               Phone
             </label>
-            <input id="phone" type="text" name="phone" onFocus={focusHandler} />
+            <input
+              id="phone"
+              type="text"
+              name="phone"
+              onFocus={focusHandler}
+              value={formValues.phone}
+              onChange={changeHandler}
+            />
             <i className="fa-solid fa-phone"></i>
           </div>
           <div className={styles.form__input}>
             <label htmlFor="job" className={styles.form__label}>
               Job
             </label>
-            <input id="job" type="text" name="job" onFocus={focusHandler} />
+            <input
+              id="job"
+              type="text"
+              name="job"
+              onFocus={focusHandler}
+              value={formValues.job}
+              onChange={changeHandler}
+            />
             <i className="fa-solid fa-briefcase"></i>
           </div>
         </div>
         <div className={styles.form__buttons}>
           <button className={styles.form__button}>Cancel</button>
-          <button className={styles.form__button}>Save</button>
+          <button className={styles.form__button} onClick={saveHandler}>Save</button>
         </div>
       </div>
     </div>
