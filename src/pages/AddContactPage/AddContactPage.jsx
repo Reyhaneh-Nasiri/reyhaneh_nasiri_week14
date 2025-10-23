@@ -41,6 +41,10 @@ const AddContactPage = () => {
             <i className="fa-solid fa-briefcase"></i>
           </div>
         </div>
+        <div className={styles.form__buttons}>
+          <button className={styles.form__button}>Cancel</button>
+          <button className={styles.form__button}>Save</button>
+        </div>
       </div>
     </div>
   );
