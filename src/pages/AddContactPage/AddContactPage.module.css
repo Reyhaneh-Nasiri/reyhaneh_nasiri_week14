@@ -86,9 +86,15 @@
     border-radius: 20px;
     width: 100%;
     cursor: pointer;
+    transition: .3s;
 }
 
 .form__button:first-child{
     color: #5088b8;
     background-color: #f0f0f0;
+}
+
+.form__button:hover{
+    transform: scale(1.05) translateY(2px);
+    opacity: .9;
 }
