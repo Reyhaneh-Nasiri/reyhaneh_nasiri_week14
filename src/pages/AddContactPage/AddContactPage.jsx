@@ -1,36 +1,43 @@
+import { useState } from "react";
 import styles from "./AddContactPage.module.css";
 const AddContactPage = () => {
+  const [isFocus, setIsFocus] = useState(false);
+
+  const focusHandler = () => {
+    setIsFocus(true);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.form}>
         <h3 className={styles.form__title}>Add Contact</h3>
-        <div className={styles.form__inputs}>
+        <div className={`${styles.form__inputs} ${isFocus && styles.active}`}>
           <div className={styles.form__input}>
             <label htmlFor="name" className={styles.form__label}>
               Name
             </label>
-            <input id="name" type="text" name="name" />
+            <input id="name" type="text" name="name" onFocus={focusHandler} />
             <i className="fa-solid fa-user"></i>
           </div>
           <div className={styles.form__input}>
             <label htmlFor="email" className={styles.form__label}>
               Email
             </label>
-            <input id="email" type="text" name="email" />
+            <input id="email" type="text" name="email" onFocus={focusHandler} />
             <i className="fa-solid fa-envelope"></i>
           </div>
           <div className={styles.form__input}>
             <label htmlFor="phone" className={styles.form__label}>
               Phone
             </label>
-            <input id="phone" type="text" name="phone" />
+            <input id="phone" type="text" name="phone" onFocus={focusHandler} />
             <i className="fa-solid fa-phone"></i>
           </div>
           <div className={styles.form__input}>
             <label htmlFor="job" className={styles.form__label}>
               Job
             </label>
-            <input id="job" type="text" name="job" />
+            <input id="job" type="text" name="job" onFocus={focusHandler} />
             <i className="fa-solid fa-briefcase"></i>
           </div>
         </div>

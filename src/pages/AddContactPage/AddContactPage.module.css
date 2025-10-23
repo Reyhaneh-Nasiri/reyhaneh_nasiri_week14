@@ -39,6 +39,10 @@
     color: #f0f0f0;
 }
 
+.form__inputs.active .form__input{
+    border-color: #5088b8;
+}
+
 .form__input input{
     width: 100%;
     outline: none;
@@ -52,4 +56,16 @@
     top: 50%;
     transform: translateY(-50%);
     transition: .3s;
+}
+
+.form__inputs.active .form__label{
+    top: 0%;
+    transform: translateY(-100%);
+    font-size: .8rem;
+    color: #5088b8;
+
+}
+
+.form__inputs.active .form__input i{
+    color: #5088b8;
 }
