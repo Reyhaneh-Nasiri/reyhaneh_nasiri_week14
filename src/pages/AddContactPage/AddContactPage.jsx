@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AddContactPage.module.css";
 const AddContactPage = () => {
   const [isFocus, setIsFocus] = useState(false);
@@ -8,6 +8,7 @@ const AddContactPage = () => {
     phone: "",
     job: "",
   });
+  const [formErrors, setFormErrors] = useState({});
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -16,6 +17,7 @@ const AddContactPage = () => {
 
   const saveHandler = () => {
     console.log(formValues);
+    setFormErrors(validate(formValues));
   };
 
   const focusHandler = () => {
@@ -33,6 +35,26 @@ const AddContactPage = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(formErrors);
+    if (Object.keys(formErrors).length === 0) {
+      console.log(formValues);
+    }
+  }, [formErrors]);
+
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.name) {
+      errors.name = "Name is required";
+    }
+    if (!values.email) {
+      errors.email = "Email is required";
+    } else if (!regex.test(values.email)) {
+      errors.email = "Invalid email";
+    }
+    return errors;
+  };
   return (
     <div className={styles.container}>
       <div className={styles.form}>
@@ -52,6 +74,7 @@ const AddContactPage = () => {
               onChange={changeHandler}
             />
             <i className="fa-solid fa-user"></i>
+            <p className={styles.form__message}>{formErrors.name}</p>
           </div>
           <div className={styles.form__input}>
             <label htmlFor="email" className={styles.form__label}>
@@ -67,6 +90,7 @@ const AddContactPage = () => {
               onChange={changeHandler}
             />
             <i className="fa-solid fa-envelope"></i>
+            <p className={styles.form__message}>{formErrors.email}</p>
           </div>
           <div className={styles.form__input}>
             <label htmlFor="phone" className={styles.form__label}>

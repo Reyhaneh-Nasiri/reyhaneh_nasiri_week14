@@ -98,3 +98,11 @@
     transform: scale(1.05) translateY(2px);
     opacity: .9;
 }
+
+.form__message{
+    position: absolute;
+    top: calc(100% + 7px);
+    left: 0;
+    font-size: .8rem;
+    color: #fe5350;
+}
