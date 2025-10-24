@@ -38,6 +38,7 @@ const App = () => {
         <AddContactPage
           setCurrentPage={setCurrentPage}
           setContacts={setContacts}
+          showToast={showToast}
         />
       )}
     </>
