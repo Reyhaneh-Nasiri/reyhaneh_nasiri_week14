@@ -1,5 +1,8 @@
 import styles from "./SearchBox.module.css";
 const SearchBox = ({ setSearch, search }) => {
+  const clearSearchHandler = () => {
+    setSearch("");
+  }
   return (
     <div className={styles.searchBox}>
       <button>
@@ -9,8 +12,9 @@ const SearchBox = ({ setSearch, search }) => {
         type="text"
         placeholder="Search contacts..."
         onChange={(e) => setSearch(e.target.value)}
+        value={search}
       />
-      {search && <i className={`${styles.clearButton} fa-solid fa-x`}></i>}
+      {search && <i className={`${styles.clearButton} fa-solid fa-x`} onClick={clearSearchHandler}></i>}
     </div>
   );
 };
