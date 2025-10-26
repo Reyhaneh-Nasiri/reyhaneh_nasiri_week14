@@ -40,6 +40,7 @@
     border: none;
     margin-left: 30px;
     cursor: pointer;
+    transition: .2s;
 }
 
 .modal__button:first-child{
@@ -48,4 +49,9 @@
 
 .modal__button:last-child{
     color: #bb2124;
+}
+
+.modal__button:hover{
+    opacity: .9;
+    transform: scale(1.1);
 }
