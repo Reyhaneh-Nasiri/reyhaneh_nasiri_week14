@@ -35,6 +35,7 @@ const App = () => {
       {currentPage === "contact-list" && (
         <ContactListPage
           setCurrentPage={setCurrentPage}
+          setContacts={setContacts}
           contacts={contacts}
           setSearch={setSearch}
           search={search}
