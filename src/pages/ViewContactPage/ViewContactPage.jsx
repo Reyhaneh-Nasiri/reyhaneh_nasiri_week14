@@ -1,10 +1,10 @@
 import styles from "./ViewContactPage.module.css";
-const ViewContactPage = ({ id, contacts }) => {
+const ViewContactPage = ({ id, contacts, setCurrentPage }) => {
   const contact = contacts.find(contact => contact.id == id)
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <i className="fa-solid fa-arrow-left"></i>
+        <i onClick={() => setCurrentPage("contact-list")} className="fa-solid fa-arrow-left"></i>
         <i class="fa-solid fa-pen-to-square"></i>
       </div>
       <ul className={styles.information}>
