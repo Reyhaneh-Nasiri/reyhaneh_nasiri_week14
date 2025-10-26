@@ -87,7 +87,7 @@ const App = () => {
           showToast={showToast}
         />
       )}
-      {currentPage === "edit-contact" && <EditContactPage />}
+      {currentPage === "edit-contact" && <EditContactPage setCurrentPage={setCurrentPage} />}
     </>
   );
 };

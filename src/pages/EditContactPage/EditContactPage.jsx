@@ -1,6 +1,6 @@
 import styles from "./EditContactPage.module.css";
 
-const EditContactPage = () => {
+const EditContactPage = ({setCurrentPage}) => {
   return (
     <div className={styles.container}>
       <div className={styles.form}>
@@ -52,7 +52,7 @@ const EditContactPage = () => {
           </div>
         </div>
         <div className={styles.form__buttons}>
-          <button className={styles.form__button}>Cancel</button>
+          <button className={styles.form__button} onClick={() => setCurrentPage("view-contact")}>Cancel</button>
           <button className={styles.form__button}>Edit</button>
         </div>
       </div>
