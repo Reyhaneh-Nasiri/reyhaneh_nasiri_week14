@@ -8,6 +8,7 @@
     padding: 20px;
     border: 2px solid #5088b8;
     border-radius: 20px;
+    padding-left: 30px;
 }
 
 .contact {
@@ -22,10 +23,17 @@
     cursor: pointer;
     transition: .2s;
     font-size: 1rem;
+    position: relative;
 }
 
 .contact:hover {
     background-color: #c0b8c0;
+}
+
+.contact input{
+    position: absolute;
+    left: -25px;
+    cursor: pointer;
 }
 
 .contact__email {
