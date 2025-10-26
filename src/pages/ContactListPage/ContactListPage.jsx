@@ -9,6 +9,7 @@ const ContactListPage = ({
   setSearch,
   search,
   showToast,
+  showModal,
 }) => {
   const [selectedItems, setSelectedItems] = useState([]);
 
@@ -27,6 +28,11 @@ const ContactListPage = ({
       showToast("No contact selected", "warning");
       return;
     }
+    showModal(
+      `Delete ${selectedItems.length} contact(s)`,
+      "Are you sure you want to delete these contacts?",
+      "Delete"
+    );
     setContacts(contacts.filter((item) => !selectedItems.includes(item.id)));
     showToast(`${selectedItems.length} contact(s) deleted`, "success");
     setSelectedItems([]);

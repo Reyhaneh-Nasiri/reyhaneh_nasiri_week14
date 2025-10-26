@@ -10,7 +10,9 @@ const App = () => {
     JSON.parse(localStorage.getItem("contacts") || "[]")
   );
   const [toast, setToast] = useState(null);
+  const [modal, setModal] = useState(null);
   const [search, setSearch] = useState("");
+
 
   const showToast = (message, type) => {
     setToast({ message, type });
@@ -20,12 +22,16 @@ const App = () => {
     setToast(null);
   };
 
+  const showModal = (title, desc, action) => {
+    setModal({title, desc, action})
+  }
+
   useEffect(() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
   return (
     <>
-      <Modal />
+      {modal && <Modal title={modal.title} desc={modal.desc} action={modal.action} />}
       {toast && (
         <ToastMessage
           message={toast.message}
@@ -41,6 +47,7 @@ const App = () => {
           setSearch={setSearch}
           search={search}
           showToast={showToast}
+          showModal={showModal}
         />
       )}
       {currentPage === "add-contact" && (
