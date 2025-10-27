@@ -12,20 +12,20 @@ const ContactListToolbar = ({setCurrentPage, deleteHandler}) => {
         }}
       >
         <p className={styles.itemMenu} onClick={() => setCurrentPage("add-contact")}>
-          <i class="fa-solid fa-plus"></i> New contact
+          <i className="fa-solid fa-plus"></i> New contact
         </p>
         <p className={styles.itemMenu} onClick={deleteHandler}>
-          <i class="fa-solid fa-trash"></i> Delete
+          <i className="fa-solid fa-trash"></i> Delete
         </p>
       </div>
       <div
         className={styles.actionMenuButton}
         onClick={() => setIsMenuOpen((isMenuOpen) => !isMenuOpen)}
       >
-        <i class="fa-solid fa-ellipsis-vertical"></i>
+        <i className="fa-solid fa-ellipsis-vertical"></i>
       </div>
-      <button onClick={() => setCurrentPage("add-contact")}><i class="fa-solid fa-user-plus"></i></button>
-      <button onClick={deleteHandler}><i class="fa-solid fa-trash"></i></button>
+      <button onClick={() => setCurrentPage("add-contact")}><i className="fa-solid fa-user-plus"></i></button>
+      <button onClick={deleteHandler}><i className="fa-solid fa-trash"></i></button>
       
     </div>
   );
