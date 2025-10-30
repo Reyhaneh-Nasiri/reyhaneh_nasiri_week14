@@ -49,7 +49,7 @@ const ContactListPage = ({
     return (
       term === "" ||
       item.name.toLowerCase().includes(term) ||
-      item.email.toLowerCase().includes(term)
+      item.email.split("@")[0].toLowerCase().includes(term)
     );
   });
 
