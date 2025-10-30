@@ -14,6 +14,7 @@ const ContactListPage = ({
   onViewClick,
 }) => {
   const [selectedItems, setSelectedItems] = useState([]);
+  const [sortBy, setSortBy] = useState("latest-added");
 
   const checkboxHandler = (e) => {
     const isSelected = e.target.checked;
@@ -43,6 +44,7 @@ const ContactListPage = ({
       () => deleteHandler()
     );
   };
+  console.log(sortBy);
   return (
     <>
       <ContactListToolbar
