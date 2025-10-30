@@ -20,3 +20,8 @@
 .sortButtons button:hover{
     transform: scale(1.05) translateY(-10%);
 }
+
+.sortButtons button.active{
+    background-color: #5088b8;
+    color: #f0f0f0;
+}
