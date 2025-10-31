@@ -10,7 +10,7 @@ import useToast from "./hooks/useToast";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState("favorites");
+  const [currentPage, setCurrentPage] = useState("contact-list");
   const [viewId, setViewId] = useState(null);
   const [editId, setEditId] = useState(null);
   const [contacts, setContacts] = useState(
