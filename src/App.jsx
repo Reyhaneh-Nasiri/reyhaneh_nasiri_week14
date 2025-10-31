@@ -13,6 +13,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState("contact-list");
   const [viewId, setViewId] = useState(null);
   const [editId, setEditId] = useState(null);
+  const [favorites, setFavorites] = useState([]);
   const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem("contacts") || "[]")
   );
@@ -74,6 +75,8 @@ const App = () => {
           showToast={showToast}
           setEditId={setEditId}
           showModal={showModal}
+          favorites={favorites}
+          setFavorites={setFavorites}
         />
       )}
       {currentPage === "edit-contact" && (
@@ -86,7 +89,9 @@ const App = () => {
           showModal={showModal}
         />
       )}
-      {currentPage === "favorites" && <FavoritesPage />}
+      {currentPage === "favorites" && (
+        <FavoritesPage />
+      )}
     </>
   );
 };

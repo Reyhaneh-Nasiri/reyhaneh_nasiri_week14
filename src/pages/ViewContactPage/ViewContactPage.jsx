@@ -9,8 +9,12 @@ const ViewContactPage = ({
   showToast,
   setEditId,
   showModal,
+  setFavorites,
+  favorites,
 }) => {
-    const [isFavorite, setIsFavorite] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(
+    favorites.find((contact) => contact.id == id)
+  );
   const contact = contacts.find((contact) => contact.id == id);
   const values = Object.keys(contact);
   const deleteHandler = () => {
@@ -27,6 +31,17 @@ const ViewContactPage = ({
       () => deleteHandler()
     );
   };
+
+  const favoriteHandler = () => {
+    setIsFavorite(!isFavorite);
+    if (!isFavorite) {
+      setFavorites(() => [...favorites, contact]);
+    } else {
+      setFavorites((prevData) => prevData.filter((c) => c.id !== contact.id));
+    }
+    console.log(favorites);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -41,8 +56,15 @@ const ViewContactPage = ({
           }}
         ></i>
       </div>
-      <button className={`${styles.favorite} ${isFavorite && styles.active}`} onClick={() => setIsFavorite(!isFavorite)}>
-        {isFavorite ? <i className="fa-solid fa-star"></i>: <i className="fa-regular fa-star"></i>}
+      <button
+        className={`${styles.favorite} ${isFavorite && styles.active}`}
+        onClick={favoriteHandler}
+      >
+        {isFavorite ? (
+          <i className="fa-solid fa-star"></i>
+        ) : (
+          <i className="fa-regular fa-star"></i>
+        )}
       </button>
       <ul className={styles.information}>
         {values.map((value) => {
