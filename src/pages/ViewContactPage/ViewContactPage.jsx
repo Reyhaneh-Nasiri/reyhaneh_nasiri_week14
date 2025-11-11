@@ -1,26 +1,27 @@
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import styles from "./ViewContactPage.module.css";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 const ViewContactPage = ({
-  id,
   contacts,
-  setCurrentPage,
   setContacts,
   showToast,
-  setEditId,
   showModal,
   setFavorites,
   favorites,
 }) => {
+  const { contactId } = useParams();
+  const navigate = useNavigate();
+
   const [isFavorite, setIsFavorite] = useState(
-    favorites.find((contact) => contact.id == id)
+    favorites.find((contact) => contact.id == contactId)
   );
-  const contact = contacts.find((contact) => contact.id == id);
+  const contact = contacts.find((contact) => contact.id == contactId);
   const values = Object.keys(contact);
   const deleteHandler = () => {
-    setContacts(contacts.filter((contact) => contact.id != id));
-    setFavorites(favorites.filter((f) => f.id != id));
-    setCurrentPage("contact-list");
+    setContacts(contacts.filter((contact) => contact.id != contactId));
+    setFavorites(favorites.filter((f) => f.id != contactId));
+    navigate("/contact-list");
     showToast("Contact deleted", "success");
   };
 
@@ -46,14 +47,12 @@ const ViewContactPage = ({
     <div className={styles.container}>
       <div className={styles.header}>
         <i
-          onClick={() => setCurrentPage("contact-list")}
+          onClick={() => navigate("/contact-list")}
           className="fa-solid fa-arrow-left"
         ></i>
         <i
           className="fa-solid fa-pen-to-square"
-          onClick={() => {
-            setCurrentPage("edit-contact"), setEditId(id);
-          }}
+          onClick={() => navigate(`/edit-contact/${contactId}`)}
         ></i>
       </div>
       <button

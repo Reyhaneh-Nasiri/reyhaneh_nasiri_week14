@@ -1,11 +1,14 @@
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./FavoritesPage.module.css";
-const FavoritesPage = ({ favorites, setCurrentPage, onViewClick }) => {
+const FavoritesPage = ({ favorites }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
           <i
-            onClick={() => setCurrentPage("contact-list")}
+            onClick={() => navigate("/contact-list")}
             className="fa-solid fa-arrow-left"
           ></i>
         </div>
@@ -16,16 +19,14 @@ const FavoritesPage = ({ favorites, setCurrentPage, onViewClick }) => {
       {favorites.length ? (
         <ul className={styles.contacts}>
           {favorites.map((contact) => (
-            <li
-              className={styles.contact}
-              key={contact.id}
-              onClick={() => onViewClick(contact.id)}
-            >
-              <div className={styles.data}>
-                <p className={styles.contact__name}>{contact.name}</p>
-                <p className={styles.contact__email}>{contact.email}</p>
-              </div>
-            </li>
+            <Link to={`/view-contact/${contact.id}`} key={contact.id}>
+              <li className={styles.contact}>
+                <div className={styles.data}>
+                  <p className={styles.contact__name}>{contact.name}</p>
+                  <p className={styles.contact__email}>{contact.email}</p>
+                </div>
+              </li>
+            </Link>
           ))}
         </ul>
       ) : (

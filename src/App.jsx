@@ -8,11 +8,13 @@ import EditContactPage from "./pages/EditContactPage/EditContactPage";
 import useModal from "./hooks/useModal";
 import useToast from "./hooks/useToast";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import {
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState("contact-list");
-  const [viewId, setViewId] = useState(null);
-  const [editId, setEditId] = useState(null);
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
@@ -45,66 +47,67 @@ const App = () => {
           onClose={removeToast}
         />
       )}
-      {currentPage === "contact-list" && (
-        <ContactListPage
-          setCurrentPage={setCurrentPage}
-          setContacts={setContacts}
-          contacts={contacts}
-          setSearch={setSearch}
-          search={search}
-          showToast={showToast}
-          showModal={showModal}
-          favorites={favorites}
-          setFavorites={setFavorites}
-          onViewClick={(id) => {
-            setViewId(id);
-            setCurrentPage("view-contact");
-          }}
+      <Routes>
+        <Route path="/" element={<Navigate to="/contact-list" />} />
+        <Route
+          path="/contact-list"
+          element={
+            <ContactListPage
+              setContacts={setContacts}
+              contacts={contacts}
+              setSearch={setSearch}
+              search={search}
+              showToast={showToast}
+              showModal={showModal}
+              favorites={favorites}
+              setFavorites={setFavorites}
+            />
+          }
         />
-      )}
-      {currentPage === "add-contact" && (
-        <AddContactPage
-          setCurrentPage={setCurrentPage}
-          setContacts={setContacts}
-          showToast={showToast}
-          showModal={showModal}
+        <Route
+          path="/add-contact"
+          element={
+            <AddContactPage
+              setContacts={setContacts}
+              showToast={showToast}
+              showModal={showModal}
+            />
+          }
         />
-      )}
-
-      {currentPage === "view-contact" && (
-        <ViewContactPage
-          id={viewId}
-          contacts={contacts}
-          setCurrentPage={setCurrentPage}
-          setContacts={setContacts}
-          showToast={showToast}
-          setEditId={setEditId}
-          showModal={showModal}
-          favorites={favorites}
-          setFavorites={setFavorites}
+        <Route
+          path="/view-contact/:contactId"
+          element={
+            <ViewContactPage
+              contacts={contacts}
+              setContacts={setContacts}
+              showToast={showToast}
+              showModal={showModal}
+              favorites={favorites}
+              setFavorites={setFavorites}
+            />
+          }
         />
-      )}
-      {currentPage === "edit-contact" && (
-        <EditContactPage
-          setCurrentPage={setCurrentPage}
-          contacts={contacts}
-          editId={editId}
-          setContacts={setContacts}
-          showToast={showToast}
-          showModal={showModal}
-          setFavorites={setFavorites}
+        <Route
+          path="/edit-contact/:contactId"
+          element={
+            <EditContactPage
+              contacts={contacts}
+              setContacts={setContacts}
+              showToast={showToast}
+              showModal={showModal}
+              setFavorites={setFavorites}
+            />
+          }
         />
-      )}
-      {currentPage === "favorites" && (
-        <FavoritesPage
-          favorites={favorites}
-          setCurrentPage={setCurrentPage}
-          onViewClick={(id) => {
-            setViewId(id);
-            setCurrentPage("view-contact");
-          }}
+        <Route
+          path="/favorites"
+          element={
+            <FavoritesPage
+              favorites={favorites}
+            />
+          }
         />
-      )}
+      </Routes>
     </>
   );
 };
