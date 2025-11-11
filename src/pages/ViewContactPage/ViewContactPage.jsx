@@ -6,12 +6,11 @@ const ViewContactPage = ({
   contacts,
   setContacts,
   showToast,
-  setEditId,
   showModal,
   setFavorites,
   favorites,
 }) => {
-  const {contactId} = useParams()
+  const { contactId } = useParams();
   const navigate = useNavigate();
 
   const [isFavorite, setIsFavorite] = useState(
@@ -53,9 +52,7 @@ const ViewContactPage = ({
         ></i>
         <i
           className="fa-solid fa-pen-to-square"
-          onClick={() => {
-            navigate("/edit-contact"), setEditId(contactId);
-          }}
+          onClick={() => navigate(`/edit-contact/${contactId}`)}
         ></i>
       </div>
       <button

@@ -15,7 +15,6 @@ import {
 } from "react-router-dom";
 
 const App = () => {
-  const [editId, setEditId] = useState(null);
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
@@ -82,7 +81,6 @@ const App = () => {
               contacts={contacts}
               setContacts={setContacts}
               showToast={showToast}
-              setEditId={setEditId}
               showModal={showModal}
               favorites={favorites}
               setFavorites={setFavorites}
@@ -90,11 +88,10 @@ const App = () => {
           }
         />
         <Route
-          path="/edit-contact"
+          path="/edit-contact/:contactId"
           element={
             <EditContactPage
               contacts={contacts}
-              editId={editId}
               setContacts={setContacts}
               showToast={showToast}
               showModal={showModal}
