@@ -3,15 +3,14 @@ import styles from "./ContactListPage.module.css";
 import ContactListToolbar from "@/components/ContactListToolbar/ContactListToolbar";
 import { useEffect, useState } from "react";
 import SortButtons from "@/components/SortButtons/SortButtons";
+import { Link } from "react-router-dom";
 const ContactListPage = ({
-  // setCurrentPage,
   contacts,
   setContacts,
   setSearch,
   search,
   showToast,
   showModal,
-  onViewClick,
   setFavorites,
   favorites,
 }) => {
@@ -76,10 +75,7 @@ const ContactListPage = ({
 
   return (
     <>
-      <ContactListToolbar
-        // setCurrentPage={setCurrentPage}
-        renderModal={renderModal}
-      />
+      <ContactListToolbar renderModal={renderModal} />
       <SearchBox setSearch={setSearch} search={search} />
       {contacts.length ? (
         <>
@@ -93,13 +89,13 @@ const ContactListPage = ({
                   checked={selectedItems.includes(contact.id)}
                   onChange={checkboxHandler}
                 />
-                <div
+                <Link
+                  to={`/view-contact/${contact.id}`}
                   className={styles.data}
-                  onClick={() => onViewClick(contact.id)}
                 >
                   <p className={styles.contact__name}>{contact.name}</p>
                   <p className={styles.contact__email}>{contact.email}</p>
-                </div>
+                </Link>
               </li>
             ))}
           </ul>

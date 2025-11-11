@@ -1,9 +1,8 @@
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import styles from "./ViewContactPage.module.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 const ViewContactPage = ({
-  id,
   contacts,
   setContacts,
   showToast,
@@ -12,16 +11,17 @@ const ViewContactPage = ({
   setFavorites,
   favorites,
 }) => {
+  const {contactId} = useParams()
   const navigate = useNavigate();
 
   const [isFavorite, setIsFavorite] = useState(
-    favorites.find((contact) => contact.id == id)
+    favorites.find((contact) => contact.id == contactId)
   );
-  const contact = contacts.find((contact) => contact.id == id);
+  const contact = contacts.find((contact) => contact.id == contactId);
   const values = Object.keys(contact);
   const deleteHandler = () => {
-    setContacts(contacts.filter((contact) => contact.id != id));
-    setFavorites(favorites.filter((f) => f.id != id));
+    setContacts(contacts.filter((contact) => contact.id != contactId));
+    setFavorites(favorites.filter((f) => f.id != contactId));
     navigate("/contact-list");
     showToast("Contact deleted", "success");
   };
@@ -54,7 +54,7 @@ const ViewContactPage = ({
         <i
           className="fa-solid fa-pen-to-square"
           onClick={() => {
-            navigate("/edit-contact"), setEditId(id);
+            navigate("/edit-contact"), setEditId(contactId);
           }}
         ></i>
       </div>
