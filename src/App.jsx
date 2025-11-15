@@ -7,6 +7,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import ContactsProvider from "./components/context/ContactsContext";
 import ModalProvider from "./components/context/ModalContext";
 import ToastProvider from "./components/context/ToastContext";
+import PageNotFound from "./pages/404/404";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
                 element={<EditContactPage />}
               />
               <Route path="/favorites" element={<FavoritesPage />} />
+              <Route path="/*" element={<PageNotFound />} />
             </Routes>
           </ContactsProvider>
         </ModalProvider>
