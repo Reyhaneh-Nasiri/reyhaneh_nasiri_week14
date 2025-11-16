@@ -1,7 +1,7 @@
 import SearchBox from "@/components/SearchBox/SearchBox";
 import styles from "./ContactListPage.module.css";
 import ContactListToolbar from "@/components/ContactListToolbar/ContactListToolbar";
-import { useContext, useEffect, useState } from "react";
+import { memo, useContext, useEffect, useState } from "react";
 import SortButtons from "@/components/SortButtons/SortButtons";
 import { Link } from "react-router-dom";
 import { ContactsContext } from "@/components/context/ContactsContext";
@@ -107,4 +107,4 @@ const ContactListPage = () => {
   );
 };
 
-export default ContactListPage;
+export default memo(ContactListPage);

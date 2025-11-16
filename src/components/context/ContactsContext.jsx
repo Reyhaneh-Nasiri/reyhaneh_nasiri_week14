@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 export const ContactsContext = createContext();
 
@@ -14,15 +14,18 @@ const ContactsProvider = ({ children }) => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [contacts, favorites]);
+
+  const value = useMemo(
+    () => ({
+      contacts,
+      setContacts,
+      favorites,
+      setFavorites,
+    }),
+    [contacts, favorites]
+  );
   return (
-    <ContactsContext.Provider
-      value={{
-        contacts,
-        setContacts,
-        favorites,
-        setFavorites,
-      }}
-    >
+    <ContactsContext.Provider value={value}>
       {children}
     </ContactsContext.Provider>
   );

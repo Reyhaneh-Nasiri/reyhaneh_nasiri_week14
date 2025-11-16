@@ -1,6 +1,6 @@
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import styles from "./ViewContactPage.module.css";
-import { useContext, useState } from "react";
+import { memo, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ContactsContext } from "@/components/context/ContactsContext";
 import { useModal } from "@/hooks/useModal";
@@ -85,4 +85,4 @@ const ViewContactPage = () => {
   );
 };
 
-export default ViewContactPage;
+export default memo(ViewContactPage);

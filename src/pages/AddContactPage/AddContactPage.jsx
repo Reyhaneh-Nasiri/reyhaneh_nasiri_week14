@@ -2,7 +2,7 @@ import ContactForm from "@/components/ContactForm/ContactForm";
 import { ContactsContext } from "@/components/context/ContactsContext";
 import { useModal } from "@/hooks/useModal";
 import { useToast } from "@/hooks/useToast";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddContactPage = () => {
@@ -38,4 +38,4 @@ const AddContactPage = () => {
   );
 };
 
-export default AddContactPage;
+export default memo(AddContactPage);
