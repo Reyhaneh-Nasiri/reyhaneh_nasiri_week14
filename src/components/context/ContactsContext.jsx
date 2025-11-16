@@ -12,7 +12,7 @@ const ContactsProvider = ({ children }) => {
   useEffect(() => {
     const fetchContacts = async () => {
       axios("http://localhost:3000/contacts")
-        .then((res) => setContacts(res));
+        .then((res) => setContacts(res.data));
     };
     fetchContacts();
     localStorage.setItem("favorites", JSON.stringify(favorites));
