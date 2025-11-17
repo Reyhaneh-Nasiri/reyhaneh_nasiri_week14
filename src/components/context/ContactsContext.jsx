@@ -16,7 +16,7 @@ const ContactsProvider = ({ children }) => {
     };
     fetchContacts();
     localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+  }, [contacts,favorites]);
 
   const value = useMemo(
     () => ({
