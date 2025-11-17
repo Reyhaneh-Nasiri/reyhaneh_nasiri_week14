@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./FavoritesPage.module.css";
-import { memo, useContext } from "react";
-import { ContactsContext } from "@/components/context/ContactsContext";
+import { memo } from "react";
+import { useContacts } from "@/hooks/useContacts";
 const FavoritesPage = () => {
-  const { contacts } = useContext(ContactsContext);
+  const { contacts } = useContacts();
   const navigate = useNavigate();
 
 
