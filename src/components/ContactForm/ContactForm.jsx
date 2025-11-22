@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./ContactForm.module.css";
-import { validateContact } from "@/utils/validation";
+import { validationSchema } from "@/utils/validation";
 const inputs = [
   { id: "name", label: "Name", icon: "fa-user" },
   { id: "email", label: "Email", icon: "fa-envelope" },
@@ -15,11 +15,11 @@ const ContactForm = ({
   title,
 }) => {
   const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
+  const [errors, setErrors] = useState({});
+
   const isActive = Object.values(formValues).some(
     (value) => value.trim() !== ""
   );
-
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -27,12 +27,18 @@ const ContactForm = ({
   };
 
   const submitHandler = () => {
-    const errors = validateContact(formValues);
-    setFormErrors(errors);
-
-    if (Object.keys(errors).length === 0) {
-      onSubmit(formValues);
-    }
+    validationSchema
+      .validate(formValues, { abortEarly: false })
+      .then((valid) => {
+        onSubmit(valid);
+      })
+      .catch((error) => {
+        const newErrors = {};
+        error.inner.forEach((err) => {
+          newErrors[err.path.toLowerCase()] = err.message;
+        });
+        setErrors(newErrors);
+      });
   };
 
   return (
@@ -53,7 +59,7 @@ const ContactForm = ({
                 onChange={changeHandler}
               />
               <i className={`fa-solid ${icon}`}></i>
-              <p className={styles.form__message}>{formErrors[id]}</p>
+              <p className={styles.form__message}>{errors[id]}</p>
             </div>
           ))}
         </div>

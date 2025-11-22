@@ -1,10 +1,8 @@
-export function validateContact(values) {
-  const errors = {};
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+import * as Yup from 'yup';
 
-  if (!values.name) errors.name = "Name is required";
-  if (!values.email) errors.email = "Email is required";
-  else if (!regex.test(values.email)) errors.email = "Invalid email";
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required('Email is required').email('Invalid email'),
+  name: Yup.string().required('Name is required'),
+});
 
-  return errors;
-}
+export {validationSchema}
